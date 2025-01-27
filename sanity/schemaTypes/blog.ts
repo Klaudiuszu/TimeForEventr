@@ -12,11 +12,9 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'Slug of your blog article',
-    },
-    {
-      name: 'titleImage',
-      type: 'image',
-      title: 'Title Image',
+      options: {
+        source: 'title'
+      }
     },
     {
       name: 'titleImage',
@@ -27,6 +25,16 @@ export default {
       name: 'smallDescription',
       type: 'text',
       title: 'Small Description'
+    },
+    {
+      name: 'content',
+      type: 'array',
+      title: 'Content',
+      of: [
+        {
+          type: 'block',
+        }
+      ]
     }
   ]
 }
