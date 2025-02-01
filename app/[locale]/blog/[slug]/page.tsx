@@ -23,7 +23,7 @@ export default async function BlogArticle({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params; // Nie musisz używać `await` dla params
   const data: fullBlogType = await getData(slug);
 
   return (
