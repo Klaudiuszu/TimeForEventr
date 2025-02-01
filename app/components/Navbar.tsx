@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ModeToggle } from "./ModeToggle";
+// import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   return (
@@ -7,7 +7,12 @@ export default function Navbar() {
       <Link href="/" className="font-bold text-3xl">
         Time For<span className="text-primary"> Event</span>
       </Link>
-      <ModeToggle />
+      <div className="flex items-center gap-4">
+        <Link href="/blog" className="hover:text-primary">
+          Blog
+        </Link>
+        {/* <ModeToggle /> */}
+      </div>
     </nav>
   );
 }
