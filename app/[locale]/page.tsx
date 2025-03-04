@@ -1,10 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { ThemeProvider } from "../components/theme-provider";
 import Navbar from "../components/Navbar";
+import '../globals.css';
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const locale = params.locale;
   const t = await getTranslations({ locale });
+
 
   return (
     <ThemeProvider

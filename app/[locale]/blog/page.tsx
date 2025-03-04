@@ -15,12 +15,17 @@ async function getData() {
     }`;
 
   const data = await client.fetch(query);
+  console.log({data})
   return data;
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
   const data: simpleBlogType[] = await getData();
-
+  console.log(params.locale)
   return (
     <div className="max-w-2xl mx-auto px-4 py-4 xl:py-12">
       <h1 className="text-3xl font-bold text-center my-8">Blog</h1>
@@ -40,7 +45,7 @@ export default async function BlogPage() {
                 {post.smallDescription}
               </p>
               <Link
-                href={`/blog/${post.currentSlug}`}
+                href={`/${params.locale}/blog/${post.currentSlug}`}
                 className="mt-4 inline-block text-primary hover:underline"
               >
                 Read More
