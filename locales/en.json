@@ -1,6 +1,8 @@
 {
   "welcome_message": "Welcome to Time For Event!",
-  "description": "Your go-to place for amazing events.",
-  "blog_title": "Our Blog",
-  "read_more": "Read More"
+  "description": "Your place for amazing events.",
+  "about": "About Us",
+  "offer": "Offer",
+  "blog": "Blog",
+  "contact": "Contact"
 }
