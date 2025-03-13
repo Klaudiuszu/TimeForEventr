@@ -26,20 +26,20 @@ export default function Navbar({ locale, messages }: NavbarProps) {
         Time For<span className="text-primary"> Event</span>
       </Link>
       <div className="hidden md:flex items-center gap-4">
-        <a href="#about" className="font-bold transition-transform duration-200 hover:-rotate-3">
+        <Link href={`/${locale}#about`} className="font-bold transition-transform duration-200 hover:-rotate-3">
           {messages.about}
-        </a>
-        <a href="#offer" className="font-bold transition-transform duration-200 hover:rotate-2">
+        </Link>
+        <Link href={`/${locale}#offer`} className="font-bold transition-transform duration-200 hover:rotate-2">
           {messages.offer}
-        </a>
+        </Link>
         <Link href={`/${locale}/blog`} className="font-bold transition-transform duration-200 hover:-rotate-2">
           {messages.blog}
         </Link>
-        <a href="#contact" className="font-bold transition-transform duration-200 hover:rotate-3">
+        <Link href={`/${locale}#contact`} className="font-bold transition-transform duration-200 hover:rotate-3">
           {messages.contact}
-        </a>
+        </Link>
         <Link
-          href={`/${nextLocale}`}
+          href={`/${nextLocale}${window.location.pathname.replace(`/${locale}`, "")}`}
           className="font-bold px-4 py-2 rounded-lg relative overflow-hidden transition-all duration-300 bg-primary text-black 
             before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity before:duration-300 
             hover:before:opacity-20 shadow-lg hover:shadow-white/50"
@@ -65,11 +65,11 @@ export default function Navbar({ locale, messages }: NavbarProps) {
 
         <div className="w-full h-full flex flex-col">
           {[
-            { href: "#about", label: messages.about },
-            { href: "#offer", label: messages.offer },
+            { href: `/${locale}#about`, label: messages.about, isLink: true },
+            { href: `/${locale}#offer`, label: messages.offer, isLink: true },
             { href: `/${locale}/blog`, label: messages.blog, isLink: true },
-            { href: "#contact", label: messages.contact },
-            { href: `/${nextLocale}`, label: langLabel, isLink: true },
+            { href: `/${locale}#contact`, label: messages.contact, isLink: true },
+            { href: `/${nextLocale}${window.location.pathname.replace(`/${locale}`, "")}`, label: langLabel, isLink: true },
           ].map(({ href, label, isLink }, index) =>
             isLink ? (
               <Link
