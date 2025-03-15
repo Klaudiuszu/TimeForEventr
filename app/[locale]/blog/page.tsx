@@ -2,7 +2,7 @@ import { simpleBlogType } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations, getMessages } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 import Navbar from "@/app/components/Navbar";
 
 export const revalidate = 30;
@@ -25,11 +25,13 @@ export default async function BlogPage({
 }: {
   params: { locale: string };
 }) {
+  const { locale } = await params;
   const data: simpleBlogType[] = await getData();
-  const messages = await getMessages({ locale: params.locale });
+  const messages = await getMessages({ locale });
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-4 xl:py-12">
-      <Navbar locale={params.locale} messages={messages as Record<string, string>} />
+    <div className="max-w-2xl mx-auto xl:py-12">
+      <Navbar locale={locale} messages={messages as Record<string, string>} />
       <h1 className="text-3xl font-bold text-center my-8">Blog</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {data.map((post, idx) => (
@@ -47,7 +49,7 @@ export default async function BlogPage({
                 {post.smallDescription}
               </p>
               <Link
-                href={`/${params.locale}/blog/${post.currentSlug}`}
+                href={`/${locale}/blog/${post.currentSlug}`}
                 className="mt-4 inline-block text-primary hover:underline"
               >
                 Read More

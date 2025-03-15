@@ -2,17 +2,28 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { useParams } from "next/navigation";
 
 interface NavbarProps {
-  locale: string;
   messages: Record<string, string>;
+  locale: string;
 }
 
-export default function Navbar({ locale, messages }: NavbarProps) {
+export default function Navbar({ messages, locale }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+
   const nextLocale = locale === "pl" ? "en" : "pl";
   const langLabel = locale === "pl" ? "EN" : "PL";
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const hash = searchParams.get("hash") || "";
+  const pathnameWithoutLocale = pathname.startsWith(`/${locale}`)
+    ? pathname.replace(`/${locale}`, "")
+    : pathname;
+  const fullPath = `${pathnameWithoutLocale}${hash ? `#${hash}` : ""}`;
 
   const handleLinkClick = () => {
     setTimeout(() => {
@@ -39,10 +50,10 @@ export default function Navbar({ locale, messages }: NavbarProps) {
           {messages.contact}
         </Link>
         <Link
-          href={`/${nextLocale}${window.location.pathname.replace(`/${locale}`, "")}`}
-          className="font-bold px-4 py-2 rounded-lg relative overflow-hidden transition-all duration-300 bg-primary text-black 
-            before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity before:duration-300 
-            hover:before:opacity-20 shadow-lg hover:shadow-white/50"
+          href={`/${nextLocale}${fullPath}`}
+          className="font-bold px-4 py-2 rounded-lg relative overflow-hidden transition-all duration-300 bg-primary text-white 
+    before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity before:duration-300 
+    hover:before:opacity-20 shadow-lg hover:shadow-white/50"
         >
           <span className="relative z-10">{langLabel}</span>
         </Link>
@@ -69,7 +80,7 @@ export default function Navbar({ locale, messages }: NavbarProps) {
             { href: `/${locale}#offer`, label: messages.offer, isLink: true },
             { href: `/${locale}/blog`, label: messages.blog, isLink: true },
             { href: `/${locale}#contact`, label: messages.contact, isLink: true },
-            { href: `/${nextLocale}${window.location.pathname.replace(`/${locale}`, "")}`, label: langLabel, isLink: true },
+            { href: `/${nextLocale}${fullPath}`, label: langLabel, isLink: true }, // Użyj fullPath z hashem
           ].map(({ href, label, isLink }, index) =>
             isLink ? (
               <Link

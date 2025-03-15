@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,16 +14,18 @@ export const metadata: Metadata = {
 
 interface Props {
   children: ReactNode;
-  params: { locale: string };
 }
 
-export default function RootLayout({ children, params }: Props) {
-  if (!supportedLocales.includes(params.locale)) {
+export default async function RootLayout({ children }: Props) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("locale")?.value || defaultLocale;
+
+  if (!supportedLocales.includes(locale)) {
     notFound();
   }
 
   return (
-    <html lang={params.locale || defaultLocale}>
+    <html lang={locale}>
       <body className={inter.className}>{children}</body>
     </html>
   );
