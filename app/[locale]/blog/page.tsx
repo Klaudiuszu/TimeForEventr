@@ -7,7 +7,7 @@ import Navbar from "@/app/components/Navbar";
 
 export const revalidate = 30;
 
-async function getData() {
+async function getData(locale: string) {
   const query = `
     *[_type == "blog"] | order(_createdAt desc) {
       title,
@@ -17,7 +17,11 @@ async function getData() {
     }`;
 
   const data = await client.fetch(query);
-  return data;
+  return data.map((post: any) => ({
+    ...post,
+    title: post.title[locale],
+    smallDescription: post.smallDescription[locale],
+  }));
 }
 
 export default async function BlogPage({
@@ -26,7 +30,7 @@ export default async function BlogPage({
   params: { locale: string };
 }) {
   const { locale } = await params;
-  const data: simpleBlogType[] = await getData();
+  const data: simpleBlogType[] = await getData(locale);
   const messages = await getMessages({ locale });
 
   return (
@@ -42,6 +46,7 @@ export default async function BlogPage({
               width={500}
               height={300}
               className="w-full h-48 object-cover"
+              priority
             />
             <div className="p-4">
               <h2 className="text-xl font-bold">{post.title}</h2>

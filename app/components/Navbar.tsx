@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useParams } from "next/navigation";
+import clsx from "clsx"; // Dodaj clsx
 
 interface NavbarProps {
   messages: Record<string, string>;
@@ -64,8 +64,10 @@ export default function Navbar({ messages, locale }: NavbarProps) {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-0 bg-black z-50 flex flex-col transition-all duration-300 ease-in-out ${isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
-          }`}
+        className={clsx(
+          "fixed inset-0 bg-black z-50 flex flex-col transition-all duration-300 ease-in-out",
+          isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
+        )}
       >
         <button
           className="absolute top-6 right-6 text-[#cfcfc4] transition-colors duration-300 z-10 group-hover:text-black"
@@ -80,15 +82,17 @@ export default function Navbar({ messages, locale }: NavbarProps) {
             { href: `/${locale}#offer`, label: messages.offer, isLink: true },
             { href: `/${locale}/blog`, label: messages.blog, isLink: true },
             { href: `/${locale}#contact`, label: messages.contact, isLink: true },
-            { href: `/${nextLocale}${fullPath}`, label: langLabel, isLink: true }, // Użyj fullPath z hashem
+            { href: `/${nextLocale}${fullPath}`, label: langLabel, isLink: true },
           ].map(({ href, label, isLink }, index) =>
             isLink ? (
               <Link
                 key={label}
                 href={href}
                 onClick={handleLinkClick}
-                className={`flex-1 w-full flex items-center justify-center text-white text-2xl font-bold transition-all duration-300 
-                  hover:bg-white hover:text-black ${index === 0 ? "group" : ""}`}
+                className={clsx(
+                  "flex-1 w-full flex items-center justify-center text-white text-2xl font-bold transition-all duration-300 hover:bg-white hover:text-black",
+                  index === 0 && "group"
+                )}
               >
                 {label}
               </Link>
@@ -97,8 +101,10 @@ export default function Navbar({ messages, locale }: NavbarProps) {
                 key={label}
                 href={href}
                 onClick={handleLinkClick}
-                className={`flex-1 w-full flex items-center justify-center text-white text-2xl font-bold transition-all duration-300 
-                  hover:bg-white hover:text-black ${index === 0 ? "group" : ""}`}
+                className={clsx(
+                  "flex-1 w-full flex items-center justify-center text-white text-2xl font-bold transition-all duration-300 hover:bg-white hover:text-black",
+                  index === 0 && "group"
+                )}
               >
                 {label}
               </a>

@@ -6,8 +6,8 @@ interface Props {
 
 export default function BlogLayout({ children }: Props) {
   return (
-    <div>
-      {children}
-    </div>
+        <div>
+          {children}
+        </div>
   );
 }
