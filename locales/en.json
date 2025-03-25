@@ -1,8 +1,20 @@
 {
   "main_message": "Your Event Starts Here",
   "secondary_message": "Make it unforgettable",
-  "about": "About Us",
+  "about": "Who We Are",
   "offer": "Offer",
   "blog": "Blog",
-  "contact": "Contact"
+  "contact": "Contact",
+  "about_me_header": "Who am I?",
+  "about_me_text": "I am a DJ with years of experience. I have played at hundreds of weddings, events, and parties, making each one unique.",
+  
+  "offer_introduce": "All bookings include a complimentary pre-event consultation to discuss your music preferences, special requests, and event timeline. Additional services like photo booths, custom lighting designs, and MC services are available upon request",
+  "offer_1_title": "Music Setup",
+  "offer_1_text": "I will provide the best music for your event.",
+  "offer_2_title": "Sound System",
+  "offer_2_text": "Professional sound system ensuring crystal-clear audio.",
+  "offer_3_title": "Lighting",
+  "offer_3_text": "Spectacular lighting to create a unique atmosphere.",
+  "offer_4_title": "Animations & Games",
+  "offer_4_text": "Engaging activities to bring energy and fun to any party."
 }

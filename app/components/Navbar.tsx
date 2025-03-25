@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 
@@ -17,7 +17,8 @@ const NavLinks = memo(({
   nextLocale,
   fullPath,
   langLabel,
-  onLinkClick
+  onLinkClick,
+  isBlogPage
 }: {
   messages: Record<string, string>;
   locale: string;
@@ -25,33 +26,68 @@ const NavLinks = memo(({
   fullPath: string;
   langLabel: string;
   onLinkClick: () => void;
+  isBlogPage: boolean;
 }) => {
+  const router = useRouter();
+
+  const handleNavigation = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    
+    if (isBlogPage) {
+      router.push(`/${locale}#${id}`);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState({}, '', `/${locale}#${id}`);
+      }
+    }
+    
+    onLinkClick();
+  };
+
   const links = [
-    { href: `/${locale}#about`, label: messages.about, prefetch: false },
-    { href: `/${locale}#offer`, label: messages.offer, prefetch: false },
+    { id: 'about', label: messages.about },
+    { id: 'offer', label: messages.offer },
     { href: `/${locale}/blog`, label: messages.blog, prefetch: true },
-    { href: `/${locale}#contact`, label: messages.contact, prefetch: false },
-    { href: `/${nextLocale}${fullPath}`, label: langLabel, prefetch: false },
+    { id: 'contact', label: messages.contact },
+    { href: `/${nextLocale}${fullPath}`, label: langLabel },
   ];
 
   return (
     <div className="w-full h-full grid grid-rows-5">
-      {links.map(({ href, label, prefetch }) => (
-        <Link
-          key={href}
-          href={href}
-          prefetch={prefetch}
-          onClick={onLinkClick}
-          scroll={false}
-          className={clsx(
-            "flex text-white text-2xl font-bold",
-            "justify-center items-center",
-            "relative overflow-hidden",
-            "hover:bg-white hover:text-black"
-          )}
-        >
-          <span className="relative z-10 px-4 py-6 text-center">{label}</span>
-        </Link>
+      {links.map((link) => (
+        link.href ? (
+          <Link
+            key={link.href}
+            href={link.href}
+            prefetch={link.prefetch}
+            onClick={onLinkClick}
+            scroll={false}
+            className={clsx(
+              "flex text-white text-2xl font-bold",
+              "justify-center items-center",
+              "relative overflow-hidden",
+              "hover:bg-white hover:text-black"
+            )}
+          >
+            <span className="relative z-10 px-4 py-6 text-center">{link.label}</span>
+          </Link>
+        ) : (
+          <a
+            key={link.id}
+            href={`#${link.id}`}
+            onClick={(e) => handleNavigation(e, link.id!)}
+            className={clsx(
+              "flex text-white text-2xl font-bold",
+              "justify-center items-center",
+              "relative overflow-hidden",
+              "hover:bg-white hover:text-black"
+            )}
+          >
+            <span className="relative z-10 px-4 py-6 text-center">{link.label}</span>
+          </a>
+        )
       ))}
     </div>
   );
@@ -60,25 +96,56 @@ const NavLinks = memo(({
 NavLinks.displayName = "NavLinks";
 
 export default function Navbar({ messages, locale }: NavbarProps) {
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
   const nextLocale = locale === "pl" ? "en" : "pl";
   const langLabel = locale === "pl" ? "EN" : "PL";
-
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const hash = searchParams.get("hash") || "";
   const pathnameWithoutLocale = pathname.startsWith(`/${locale}`)
     ? pathname.replace(`/${locale}`, "")
     : pathname;
-  const fullPath = `${pathnameWithoutLocale}${hash ? `#${hash}` : ""}`;
+  const fullPath = `${pathnameWithoutLocale}`;
+  const isBlogPage = pathname.includes('/blog');
 
   const toggleMenu = useCallback((open: boolean) => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    setIsMenuOpen(open);
+    document.body.style.overflow = open ? 'hidden' : '';
   }, []);
+
+  const handleMainNavigation = useCallback((id: string) => {
+    if (isBlogPage) {
+      router.push(`/${locale}#${id}`);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState({}, '', `/${locale}#${id}`);
+      }
+    }
+  }, [isBlogPage, locale, router]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (!isBlogPage) {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    };
+
+    if (!isBlogPage) {
+      handleHashChange();
+      window.addEventListener('hashchange', handleHashChange);
+    }
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [isBlogPage]);
 
   return (
     <>
@@ -98,22 +165,26 @@ export default function Navbar({ messages, locale }: NavbarProps) {
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
-            {[
-              { href: `/${locale}#about`, label: messages.about, prefetch: false },
-              { href: `/${locale}#offer`, label: messages.offer, prefetch: false },
-              { href: `/${locale}/blog`, label: messages.blog, prefetch: true },
-              { href: `/${locale}#contact`, label: messages.contact, prefetch: false },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                prefetch={item.prefetch}
-                scroll={false}
+            {['about', 'offer', 'contact'].map((id) => (
+              <a
+                key={id}
+                href={`/${locale}#${id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleMainNavigation(id);
+                }}
                 className="font-medium text-white/90 hover:text-white transition-transform duration-100 hover:scale-105"
               >
-                {item.label}
-              </Link>
+                {messages[id]}
+              </a>
             ))}
+            <Link
+              href={`/${locale}/blog`}
+              className="font-medium text-white/90 hover:text-white transition-transform duration-100 hover:scale-105"
+              prefetch
+            >
+              {messages.blog}
+            </Link>
             <Link
               href={`/${nextLocale}${fullPath}`}
               className="font-bold px-4 py-2 rounded-lg bg-white/30 text-white border border-white/40 hover:bg-white/40 transition-all duration-100 hover:scale-105"
@@ -126,14 +197,32 @@ export default function Navbar({ messages, locale }: NavbarProps) {
 
           <button
             className="md:hidden text-white"
-            onClick={() => toggleMenu(true)}
-            aria-label="Open menu"
+            onClick={() => toggleMenu(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            <Menu size={28} />
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </nav>
 
+      {/* Mobile Menu */}
+      <div className={clsx(
+        "fixed inset-0 bg-black/90 backdrop-blur-lg z-40 transition-all duration-300",
+        "flex items-center justify-center",
+        isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+      )}>
+        {isMenuOpen && (
+          <NavLinks
+            messages={messages}
+            locale={locale}
+            nextLocale={nextLocale}
+            fullPath={fullPath}
+            langLabel={langLabel}
+            onLinkClick={() => toggleMenu(false)}
+            isBlogPage={isBlogPage}
+          />
+        )}
+      </div>
     </>
   );
 }

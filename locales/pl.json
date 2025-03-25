@@ -4,5 +4,17 @@
   "about": "Kim Jesteśmy",
   "offer": "Oferta",
   "blog": "Blog",
-  "contact": "Kontakt"
+  "contact": "Kontakt",
+  "about_me_header": "Kim jestem?",
+  "about_me_text": "Jestem DJ-em z wieloletnim doświadczeniem. Zagrałem na setkach wesel, eventów i imprez, sprawiając, że każda z nich była wyjątkowa.",
+  
+  "offer_introduce": "Lorem ipsum TEst Polski Język jestem DJ gram śpiewam mam dla was ofertę będzie dobra polecam się na przyszłość",
+  "offer_1_title": "Oprawa Muzyczna",
+  "offer_1_text": "Zadbam o najlepszą muzykę na Twoim wydarzeniu.",
+  "offer_2_title": "Nagłośnienie",
+  "offer_2_text": "Profesjonalne nagłośnienie zapewniające krystalicznie czysty dźwięk.",
+  "offer_3_title": "Oświetlenie",
+  "offer_3_text": "Efektowne oświetlenie, które nada Twojemu wydarzeniu wyjątkowy klimat.",
+  "offer_4_title": "Animacje i Zabawy",
+  "offer_4_text": "Atrakcje, które zintegrują i rozkręcą każdą imprezę."
 }
