@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import Navbar from "../components/Navbar";
 import { getMessages } from "next-intl/server";
 import '../globals.css';
+import VideoBackground from "../components/VideoBackground";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const { locale } = await params;
@@ -11,14 +12,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
   return (
     <>
       <Navbar locale={locale} messages={messages as Record<string, string>} />
-      <main className="max-w-2xl mx-auto px-4 py-4 xl:py-12">
-        <h1 className="text-3xl font-bold text-center my-8">
-          {t("welcome_message")}
-        </h1>
-        <p className="text-center">
-          {t("description")}
-        </p>
-      </main>
+      <VideoBackground messages={messages as Record<string, string>} />
     </>
   );
 }

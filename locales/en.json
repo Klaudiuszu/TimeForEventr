@@ -1,6 +1,6 @@
 {
-  "welcome_message": "Welcome to Time For Event!",
-  "description": "Your place for amazing events.",
+  "main_message": "Your Event Starts Here",
+  "secondary_message": "Make it unforgettable",
   "about": "About Us",
   "offer": "Offer",
   "blog": "Blog",
