@@ -6,6 +6,7 @@ import VideoBackground from "../components/VideoBackground";
 import DJSection from "../components/DJSection";
 import Offer from "../components/Offer";
 import SoundSection from "../components/SoundsSection";
+import Footer from "../components/Footer";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const { locale } = await params;
@@ -20,6 +21,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <DJSection messages={messages as Record<string, string>} />
         <Offer messages={messages as Record<string, string>} />
         <SoundSection messages={messages as Record<string, string>} />
+          <Footer messages={messages as Record<string, string>} />
       </div>
     </div>
   );
