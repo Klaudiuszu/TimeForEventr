@@ -22,7 +22,7 @@ export default function SoundSection({ messages }: SoundSectionProps) {
       <div className="flex-1 flex justify-center">
           <div className="relative w-full aspect-[4/3] max-w-[600px]">
             <Image 
-              src="/offer1.jpg" 
+              src="/systemPhoto.jpg" 
               alt="Professional sound equipment"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
