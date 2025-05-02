@@ -68,7 +68,7 @@ const NavLinks = memo(({
               "flex text-white text-2xl font-bold",
               "justify-center items-center",
               "relative overflow-hidden",
-              "hover:bg-white hover:text-black"
+              "hover:bg-white hover:text-black transition-colors duration-200"
             )}
           >
             <span className="relative z-10 px-4 py-6 text-center">{link.label}</span>
@@ -82,7 +82,7 @@ const NavLinks = memo(({
               "flex text-white text-2xl font-bold",
               "justify-center items-center",
               "relative overflow-hidden",
-              "hover:bg-white hover:text-black"
+              "hover:bg-white hover:text-black transition-colors duration-200"
             )}
           >
             <span className="relative z-10 px-4 py-6 text-center">{link.label}</span>
@@ -97,6 +97,7 @@ NavLinks.displayName = "NavLinks";
 
 export default function Navbar({ messages, locale }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const nextLocale = locale === "pl" ? "en" : "pl";
@@ -125,6 +126,10 @@ export default function Navbar({ messages, locale }: NavbarProps) {
   }, [isBlogPage, locale, router]);
 
   useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
     const handleHashChange = () => {
       if (!isBlogPage) {
         const hash = window.location.hash.substring(1);
@@ -137,12 +142,15 @@ export default function Navbar({ messages, locale }: NavbarProps) {
       }
     };
 
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
     if (!isBlogPage) {
       handleHashChange();
       window.addEventListener('hashchange', handleHashChange);
     }
 
     return () => {
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, [isBlogPage]);
@@ -151,13 +159,19 @@ export default function Navbar({ messages, locale }: NavbarProps) {
     <>
       <nav className={clsx(
         "fixed top-0 left-0 w-screen max-w-full flex items-center justify-center px-4 py-5",
-        "backdrop-blur-lg bg-white/20 border-b border-white/20",
-        "z-50 transition-colors duration-300"
+        "backdrop-blur-lg border-b transition-all duration-300",
+        "z-50",
+        isScrolled 
+          ? "bg-white/90 border-gray-200 shadow-md text-gray-900"
+          : "bg-white/20 border-white/20 text-white"
       )}>
         <div className="w-full max-w-screen-xl flex items-center justify-between">
           <Link
             href={`/${locale}`}
-            className="font-bold text-3xl text-white transition-colors"
+            className={clsx(
+              "font-bold text-3xl transition-colors",
+              isScrolled ? "text-gray-900" : "text-white"
+            )}
             prefetch
             scroll={false}
           >
@@ -173,21 +187,32 @@ export default function Navbar({ messages, locale }: NavbarProps) {
                   e.preventDefault();
                   handleMainNavigation(id);
                 }}
-                className="font-medium text-white/90 hover:text-white transition-transform duration-100 hover:scale-105"
+                className={clsx(
+                  "font-medium transition-all duration-100 hover:scale-105",
+                  isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+                )}
               >
                 {messages[id]}
               </a>
             ))}
             <Link
               href={`/${locale}/blog`}
-              className="font-medium text-white/90 hover:text-white transition-transform duration-100 hover:scale-105"
+              className={clsx(
+                "font-medium transition-all duration-100 hover:scale-105",
+                isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+              )}
               prefetch
             >
               {messages.blog}
             </Link>
             <Link
               href={`/${nextLocale}${fullPath}`}
-              className="font-bold px-4 py-2 rounded-lg bg-white/30 text-white border border-white/40 hover:bg-white/40 transition-all duration-100 hover:scale-105"
+              className={clsx(
+                "font-bold px-4 py-2 rounded-lg border transition-all duration-100 hover:scale-105",
+                isScrolled 
+                  ? "bg-gray-800 text-white border-gray-700 hover:bg-gray-700"
+                  : "bg-white/30 text-white border-white/40 hover:bg-white/40"
+              )}
               scroll={false}
               prefetch={false}
             >
@@ -196,7 +221,10 @@ export default function Navbar({ messages, locale }: NavbarProps) {
           </div>
 
           <button
-            className="md:hidden text-white"
+            className={clsx(
+              "md:hidden transition-colors",
+              isScrolled ? "text-gray-900" : "text-white"
+            )}
             onClick={() => toggleMenu(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -204,8 +232,6 @@ export default function Navbar({ messages, locale }: NavbarProps) {
           </button>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
       <div className={clsx(
         "fixed inset-0 bg-black/90 backdrop-blur-lg z-40 transition-all duration-300",
         "flex items-center justify-center",
