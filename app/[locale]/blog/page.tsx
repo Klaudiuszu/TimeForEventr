@@ -2,7 +2,7 @@ import { simpleBlogType } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import { getMessages } from "next-intl/server";
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/navbar/Navbar";
 import Button from "@/app/components/Button";
 import clsx from "clsx";
 

@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import { getMessages } from "next-intl/server";
 import '../globals.css';
 import VideoBackground from "../components/VideoBackground";
