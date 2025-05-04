@@ -8,6 +8,7 @@ import Offer from "../components/Offer";
 import SoundSection from "../components/SoundsSection";
 import Footer from "../components/Footer";
 import Cooperation from "../components/Cooperation";
+import EmailSection from "../components/Email";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const { locale } = await params;
@@ -23,6 +24,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <Offer messages={messages as Record<string, string>} />
         <SoundSection messages={messages as Record<string, string>} />
           <Cooperation messages={messages as Record<string,string>} />
+          <EmailSection messages={messages as Record<string, string>} />
           <Footer messages={messages as Record<string, string>} />
       </div>
     </div>

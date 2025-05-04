@@ -29,5 +29,17 @@
   "footer_copyright": "DJ Service. All rights reserved.",
   "footer_legal_privacy": "Privacy Policy",
   "footer_legal_terms": "Terms of Service",
-  "footer_legal_cookies": "Cookies Policy"
+  "footer_legal_cookies": "Cookies Policy",
+
+  "emailHeader": "Get In Touch",
+  "emailInfo": "Have questions or want to book our services? Send us a message and we'll respond within 24 hours.",
+  "emailStep0": "Simple Booking Process",
+  "emailStep1": "Fill out the contact form",
+  "emailStep2": "We'll confirm availability and details",
+  "emailSentMail": "Thank you! Your message has been sent successfully.",
+  "emailName": "Your Name",
+  "emailEmail": "Your Email",
+  "emailText": "Your Message (Event date, type, and any special requests)",
+  "emailSend": "Send Message",
+  "emailSending": "Sending..."
 }
