@@ -1,4 +1,5 @@
 
+import CookieBanner from "@/app/components/CookieBanner";
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/navbar/Navbar";
 import PrivacyPolicy from "@/app/components/PrivacyPolicy";
@@ -19,6 +20,7 @@ export default async function PrivacyPolicyPage({
         <PrivacyPolicy messages={messages as Record<string,string>} /> 
       </div>
         <Footer locale={locale} messages={messages as Record<string, string>} />
+        <CookieBanner messages={messages as Record<string,string>} />
     </section>
   );
 }

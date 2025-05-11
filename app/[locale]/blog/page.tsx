@@ -6,6 +6,7 @@ import Navbar from "@/app/components/navbar/Navbar";
 import Button from "@/app/components/Button";
 import clsx from "clsx";
 import Footer from "@/app/components/Footer";
+import CookieBanner from "@/app/components/CookieBanner";
 
 export const revalidate = 30;
 
@@ -96,6 +97,7 @@ export default async function BlogPage({
         </div>
       </div>
       <Footer locale={locale} messages={messages as Record<string, string>} />
+      <CookieBanner messages={messages as Record<string,string>} />
     </section>
   );
 }

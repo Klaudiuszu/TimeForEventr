@@ -1,4 +1,5 @@
 
+import CookieBanner from "@/app/components/CookieBanner";
 import Cookies from "@/app/components/Cookies";
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/navbar/Navbar";
@@ -19,6 +20,7 @@ export default async function CookiesPage({
         <Cookies messages={messages as Record<string,string>} /> 
       </div>
         <Footer locale={locale} messages={messages as Record<string, string>} />
+        <CookieBanner messages={messages as Record<string,string>} />
     </section>
   );
 }
