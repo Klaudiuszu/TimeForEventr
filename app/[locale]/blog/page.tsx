@@ -34,7 +34,7 @@ export default async function BlogPage({
 }) {
   const { locale } = await params;
   const data: simpleBlogType[] = await getData(locale);
-  const messages = await getMessages({ locale });
+  const messages = await getMessages({ locale }) as Record<string, string>;
 
   return (
     <section className="bg-[#070707] min-h-screen">
@@ -45,13 +45,13 @@ export default async function BlogPage({
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-white mb-4">Blog</h1>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Discover the latest articles and news
+              {messages.page_post_discover}
             </p>
           </div>
 
           {data.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-400">No articles yet</p>
+              <p className="text-gray-400">{messages.page_post_no_articles}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -87,7 +87,7 @@ export default async function BlogPage({
                       href={`/${locale}/blog/${post.currentSlug}`}
                       className="mt-auto text-white font-bold rounded-sm"
                     >
-                      Read More
+                      {messages.page_post_button}
                     </Button>
                   </div>
                 </article>
@@ -97,7 +97,7 @@ export default async function BlogPage({
         </div>
       </div>
       <Footer locale={locale} messages={messages as Record<string, string>} />
-      <CookieBanner messages={messages as Record<string,string>} />
+      <CookieBanner messages={messages as Record<string, string>} />
     </section>
   );
 }

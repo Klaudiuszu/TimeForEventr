@@ -84,5 +84,9 @@
   "cookies_reject_all": "Reject All",
   "cookies_save_prefs": "Save Preferences",
   "cookies_customize": "Customize",
-  "cookies_always_on": "Always On"
+  "cookies_always_on": "Always On",
+
+  "page_post_button": "Read More",
+  "page_post_no_articles": "No articles yet",
+  "page_post_discover": "Discover the latest articles and news"
 }
