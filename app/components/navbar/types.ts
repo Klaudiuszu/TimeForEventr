@@ -11,7 +11,7 @@ export interface NavLinksProps {
   langLabel: string;
   onLinkClick: () => void;
   isBlogPage: boolean;
-  setIsBlogLoading: (loading: boolean) => void;
+  // setIsBlogLoading: (_isLoading?: boolean) => void;
 }
 
 export interface LinkItem {

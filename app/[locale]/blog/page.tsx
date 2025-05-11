@@ -30,7 +30,7 @@ async function getData(locale: string) {
 export default async function BlogPage({
   params,
 }: {
-  params: { locale: string };
+  params: any | { locale: string };
 }) {
   const { locale } = await params;
   const data: simpleBlogType[] = await getData(locale);
@@ -100,4 +100,8 @@ export default async function BlogPage({
       <CookieBanner messages={messages as Record<string, string>} />
     </section>
   );
+}
+
+export async function generateStaticParams() {
+  return [{ locale: 'pl' }, { locale: 'en' }];
 }

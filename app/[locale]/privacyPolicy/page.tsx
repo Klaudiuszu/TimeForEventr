@@ -8,7 +8,7 @@ import { getMessages } from "next-intl/server";
 export default async function PrivacyPolicyPage({
   params,
 }: {
-  params: { locale: string };
+  params: any | { locale: string };
 }) {
   const { locale } = params;
   const messages = await getMessages({ locale });
@@ -23,4 +23,8 @@ export default async function PrivacyPolicyPage({
         <CookieBanner messages={messages as Record<string,string>} />
     </section>
   );
+}
+
+export async function generateStaticParams() {
+  return [{ locale: 'pl' }, { locale: 'en' }];
 }

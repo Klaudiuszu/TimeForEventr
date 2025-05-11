@@ -202,7 +202,7 @@ export default function Navbar({ messages, locale }: NavbarProps) {
             langLabel={langLabel}
             onLinkClick={() => toggleMenu(false)}
             isBlogPage={isBlogPage}
-            setIsBlogLoading={setIsLinkLoading}
+            // setIsBlogLoading={(isLoading) => setIsLinkLoading(!!isLoading)}
           />
         )}
       </div>

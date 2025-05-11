@@ -1,4 +1,3 @@
-import { getTranslations } from "next-intl/server";
 import Navbar from "../components/navbar/Navbar";
 import { getMessages } from "next-intl/server";
 import '../globals.css';
@@ -11,9 +10,12 @@ import Cooperation from "../components/Cooperation";
 import EmailSection from "../components/Email";
 import CookieBanner from "../components/CookieBanner";
 
-export default async function Home({ params }: { params: { locale: string } }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale });
+export async function generateStaticParams() {
+  return [{ locale: 'pl' }, { locale: 'en' }];
+}
+
+export default async function Home({ params }: { params: any | { locale: string } }) {
+  const { locale } = params;
   const messages = await getMessages({ locale });
 
   return (
@@ -24,11 +26,11 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <DJSection messages={messages as Record<string, string>} />
         <Offer messages={messages as Record<string, string>} />
         <SoundSection messages={messages as Record<string, string>} />
-          <Cooperation messages={messages as Record<string,string>} />
-          <EmailSection messages={messages as Record<string, string>} />
-          <Footer locale={locale} messages={messages as Record<string, string>} />
+        <Cooperation messages={messages as Record<string, string>} />
+        <EmailSection messages={messages as Record<string, string>} />
+        <Footer locale={locale} messages={messages as Record<string, string>} />
       </div>
-      <CookieBanner messages={messages as Record<string,string>} />
+      <CookieBanner messages={messages as Record<string, string>} />
     </div>
   );
 }

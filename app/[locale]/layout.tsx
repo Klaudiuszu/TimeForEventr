@@ -1,4 +1,5 @@
-import { defaultLocale, supportedLocales } from "@/i18n";
+import React from 'react'; // Added React import
+import { supportedLocales } from "@/i18n";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -19,7 +20,7 @@ interface LayoutProps {
 }
 
 export default async function RootLayout({ children, params }: LayoutProps) {
-  const { locale } = await params;
+  const { locale } = params;
   await Promise.resolve();
 
   if (!supportedLocales.includes(locale)) {

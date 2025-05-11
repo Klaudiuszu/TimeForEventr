@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import React, { memo } from "react"; // Added React import
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
@@ -14,7 +14,7 @@ const NavLinks = memo(({
   langLabel,
   onLinkClick,
   isBlogPage,
-  setIsBlogLoading
+  // setIsBlogLoading
 }: NavLinksProps) => {
   const router = useRouter();
 
@@ -36,11 +36,11 @@ const NavLinks = memo(({
 
   const handleBlogClick = async (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsBlogLoading(true);
+    // setIsBlogLoading(true);
     try {
       await router.push(`/${locale}/blog`);
     } finally {
-      setIsBlogLoading(false);
+      // setIsBlogLoading(false);
     }
   };
 
