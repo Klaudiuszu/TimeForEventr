@@ -25,7 +25,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <SoundSection messages={messages as Record<string, string>} />
           <Cooperation messages={messages as Record<string,string>} />
           <EmailSection messages={messages as Record<string, string>} />
-          <Footer messages={messages as Record<string, string>} />
+          <Footer locale={locale} messages={messages as Record<string, string>} />
       </div>
     </div>
   );

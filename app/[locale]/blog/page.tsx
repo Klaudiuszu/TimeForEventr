@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import Navbar from "@/app/components/navbar/Navbar";
 import Button from "@/app/components/Button";
 import clsx from "clsx";
+import Footer from "@/app/components/Footer";
 
 export const revalidate = 30;
 
@@ -30,7 +31,7 @@ export default async function BlogPage({
 }: {
   params: { locale: string };
 }) {
-  const { locale } =  await params;
+  const { locale } = await params;
   const data: simpleBlogType[] = await getData(locale);
   const messages = await getMessages({ locale });
 
@@ -46,7 +47,7 @@ export default async function BlogPage({
               Discover the latest articles and news
             </p>
           </div>
-          
+
           {data.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-400">No articles yet</p>
@@ -54,7 +55,7 @@ export default async function BlogPage({
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {data.map((post) => (
-                <article 
+                <article
                   key={post.currentSlug}
                   className={clsx(
                     "rounded-xl overflow-hidden h-full flex flex-col",
@@ -72,7 +73,7 @@ export default async function BlogPage({
                       priority
                     />
                   </div>
-                  
+
                   <div className="p-6 flex-1 flex flex-col">
                     <h2 className="text-xl font-bold text-white mb-3 line-clamp-2">
                       {post.title}
@@ -80,7 +81,7 @@ export default async function BlogPage({
                     <p className="text-gray-300 mb-4 text-sm line-clamp-3 flex-1">
                       {post.smallDescription}
                     </p>
-                    
+
                     <Button
                       href={`/${locale}/blog/${post.currentSlug}`}
                       className="mt-auto text-white font-bold rounded-sm"
@@ -94,6 +95,7 @@ export default async function BlogPage({
           )}
         </div>
       </div>
+      <Footer locale={locale} messages={messages as Record<string, string>} />
     </section>
   );
 }

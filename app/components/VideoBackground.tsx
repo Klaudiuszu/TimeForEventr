@@ -30,10 +30,10 @@ const VideoBackground = memo(({ messages }: BackgroundProps) => {
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
       />
       <div className="flex flex-col items-center">
-      <h1 className="text-white text-3xl md:text-5xl font-bold text-center drop-shadow-lg opacity-0 animate-fade-in">
+      <h1 className="text-dj-lightAccent text-3xl md:text-5xl font-bold text-center drop-shadow-lg opacity-0 animate-fade-in">
   {messages.main_message}
 </h1>
-<h2 className="text-white text-2xl md:text-4xl font-semibold text-center drop-shadow-lg mt-2 opacity-0 animate-fade-in animate-pulse delay-1000">
+<h2 className="text-dj-lightAccent text-2xl md:text-4xl font-semibold text-center drop-shadow-lg mt-2  animate-pulse delay-1000">
   {messages.secondary_message}
 </h2>
       </div>

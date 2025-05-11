@@ -5,9 +5,10 @@ import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
 
 interface FooterProps {
     messages: Record<string, string>;
+    locale: string;
 }
 
-export default function Footer({ messages }: FooterProps) {
+export default function Footer({ messages, locale }: FooterProps) {
   return (
     <footer className="w-full bg-dj-light text-dj-dark py-12">
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col gap-12">
@@ -58,13 +59,12 @@ export default function Footer({ messages }: FooterProps) {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
               {[
-                { key: "privacy", text: messages.footer_legal_privacy },
-                { key: "terms", text: messages.footer_legal_terms },
+                { key: "privacyPolicy", text: messages.footer_legal_privacy },
                 { key: "cookies", text: messages.footer_legal_cookies }
               ].map((item) => (
                 <Link 
                   key={item.key}
-                  href={`/${item.key}`}
+                  href={`/${locale}/${item.key}`}
                   className="text-dj-dark/80 hover:text-dj-gold text-sm transition-colors"
                 >
                   {item.text}

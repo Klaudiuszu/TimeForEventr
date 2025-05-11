@@ -41,5 +41,21 @@
   "emailEmail": "Your Email",
   "emailText": "Your Message (Event date, type, and any special requests)",
   "emailSend": "Send Message",
-  "emailSending": "Sending..."
+  "emailSending": "Sending...",
+
+  "privacy_policy_title": "Privacy Policy",
+  "privacy_policy_data_controller": "Data Controller",
+  "privacy_policy_contact_form": "Contact Form Data Processing",
+  "privacy_policy_contact_form_description": "When you use our contact form, we collect your name and email address to respond to your inquiry. Providing this data is voluntary but necessary to respond to your message.",
+  "privacy_policy_data_purpose": "Purpose of Data Processing",
+  "privacy_policy_data_purpose_content": "Your personal data provided through the contact form will be processed solely for the purpose of responding to your inquiry and for possible future communication related to your initial message.",
+  "privacy_policy_data_retention": "Data Retention Period",
+  "privacy_policy_data_retention_content": "We will store your personal data for the period necessary to handle your inquiry and for a maximum of 12 months thereafter for archival purposes, unless you request earlier deletion.",
+  "privacy_policy_rights": "Your Rights",
+  "privacy_policy_rights_content": "You have the right to access your data, request correction, deletion, or restriction of processing. You may also object to the processing of your data. To exercise these rights, please contact us using the details provided above.",
+  "privacy_policy_security": "Data Security",
+  "privacy_policy_security_content": "We implement appropriate technical and organizational measures to ensure the security of your personal data, including protection against unauthorized access and accidental loss.",
+  "privacy_policy_changes": "Changes to Privacy Policy",
+  "privacy_policy_changes_content": "We reserve the right to modify this privacy policy. Any changes will be published on this page.",
+  "privacy_policy_effective_date": "Effective date: June 5, 2023"
 }

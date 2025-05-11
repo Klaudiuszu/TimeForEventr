@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import NavLinks from "./NavLinks";
 import { NavbarProps } from "./types";
+import Image from 'next/image';
 
 export default function Navbar({ messages, locale }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -113,7 +114,16 @@ export default function Navbar({ messages, locale }: NavbarProps) {
             prefetch
             scroll={false}
           >
-            Time For<span> Event</span>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={150}
+              height={40}
+              className={clsx(
+                "transition-opacity hover:opacity-80",
+                isScrolled ? "opacity-100" : "opacity-90"
+              )}
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
