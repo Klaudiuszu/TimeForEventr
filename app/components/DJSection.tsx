@@ -1,11 +1,7 @@
 import Image from 'next/image';
 
 interface DJSectionProps {
-    messages: {
-        about_me_header: string;
-        about_me_text: string;
-        about_me_text2: string;
-    };
+    messages: Record<string, string>;
 }
 
 export default function DJSection({ messages }: DJSectionProps) {

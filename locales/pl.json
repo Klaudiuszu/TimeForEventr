@@ -57,5 +57,32 @@
   "privacy_policy_security_content": "Wdrażamy odpowiednie środki techniczne i organizacyjne zapewniające bezpieczeństwo Twoich danych osobowych, w tym ochronę przed nieuprawnionym dostępem i przypadkową utratą.",
   "privacy_policy_changes": "Zmiany w polityce prywatności",
   "privacy_policy_changes_content": "Zastrzegamy sobie prawo do modyfikacji tej polityki prywatności. Wszelkie zmiany będą publikowane na tej stronie.",
-  "privacy_policy_effective_date": "Data obowiązywania: 5 czerwca 2023"
+  "privacy_policy_effective_date": "Data obowiązywania: 5 czerwca 2023",
+
+  "cookies_what_are_content": "Cookies to małe pliki tekstowe przechowywane na Twoim urządzeniu podczas odwiedzania stron internetowych. Pomagają w prawidłowym funkcjonowaniu strony i dostarczają informacji o zachowaniu użytkowników.",
+  "cookies_how_use": "Jak wykorzystujemy cookies",
+  "cookies_how_use_content": "Używamy plików cookies aby zapewnić prawidłowe działanie strony, analizować ruch na stronie i personalizować treści. Niektóre ciasteczka są niezbędne i nie można ich wyłączyć.",
+  "cookies_types": "Rodzaje używanych ciasteczek",
+  "cookies_essential": "Niezbędne ciasteczka",
+  "cookies_essential_desc": "Wymagane do podstawowego funkcjonowania strony. Bez nich nasza strona nie działałaby poprawnie.",
+  "cookies_performance": "Ciasteczka wydajności",
+  "cookies_performance_desc": "Pomagają zrozumieć, jak odwiedzający wchodzą w interakcję z naszą stroną, zbierając anonimowe informacje.",
+  "cookies_functional": "Funkcjonalne ciasteczka",
+  "cookies_functional_desc": "Zapamiętują Twoje preferencje i ustawienia, aby zapewnić rozszerzone funkcje.",
+  "cookies_marketing": "Ciasteczka marketingowe",
+  "cookies_marketing_desc": "Używane do śledzenia odwiedzających między stronami w celu wyświetlania odpowiednich reklam.",
+  "cookies_control": "Kontrola ciasteczek",
+  "cookies_control_content": "Możesz zarządzać preferencjami dotyczącymi ciasteczek w ustawieniach przeglądarki. Pamiętaj, że wyłączenie niektórych ciasteczek może wpłynąć na funkcjonalność strony.",
+  "cookies_changes": "Zmiany w polityce",
+  "cookies_changes_content": "Możemy aktualizować tę Politykę Cookies. Wszelkie zmiany będą publikowane na tej stronie.",
+  "cookies_effective_date": "Data obowiązywania: 5 czerwca 2023",
+
+  "cookies_banner_message": "Używamy plików cookies aby poprawić Twoje doświadczenia. Klikając 'Zaakceptuj wszystkie', wyrażasz zgodę na wszystkie ciasteczka.",
+  "cookies_preferences_title": "Preferencje Cookies",
+  "cookies_preferences_description": "Zarządzaj ustawieniami ciasteczek. Niezbędne ciasteczka nie mogą być wyłączone, ponieważ są konieczne do podstawowego funkcjonowania strony.",
+  "cookies_accept_all": "Zaakceptuj wszystkie",
+  "cookies_reject_all": "Odrzuć wszystkie",
+  "cookies_save_prefs": "Zapisz preferencje",
+  "cookies_customize": "Dostosuj",
+  "cookies_always_on": "Zawsze włączone"
 }

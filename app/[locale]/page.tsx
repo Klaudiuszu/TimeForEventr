@@ -9,6 +9,7 @@ import SoundSection from "../components/SoundsSection";
 import Footer from "../components/Footer";
 import Cooperation from "../components/Cooperation";
 import EmailSection from "../components/Email";
+import CookieBanner from "../components/CookieBanner";
 
 export default async function Home({ params }: { params: { locale: string } }) {
   const { locale } = await params;
@@ -27,6 +28,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
           <EmailSection messages={messages as Record<string, string>} />
           <Footer locale={locale} messages={messages as Record<string, string>} />
       </div>
+      <CookieBanner messages={messages as Record<string,string>} />
     </div>
   );
 }
