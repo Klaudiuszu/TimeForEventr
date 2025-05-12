@@ -181,7 +181,7 @@ export default function Navbar({ messages, locale }: NavbarProps) {
             onClick={() => toggleMenu(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMenuOpen ? <X size={28}/> : <Menu size={28} />}
           </button>
         </div>
       </nav>
@@ -189,7 +189,7 @@ export default function Navbar({ messages, locale }: NavbarProps) {
       <div
         className={clsx(
           "fixed inset-0 bg-black/90 backdrop-blur-lg z-40 transition-all duration-300",
-          "flex items-center justify-center",
+          "flex items-center justify-center pt-[100px] md:pt-0 ",
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         )}
       >

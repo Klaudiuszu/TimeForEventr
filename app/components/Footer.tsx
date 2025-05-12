@@ -90,7 +90,6 @@ export default function Footer({ messages, locale }: FooterProps) {
               {[
                 { key: "privacyPolicy", text: messages.footer_legal_privacy },
                 { key: "cookies", text: messages.footer_legal_cookies },
-                { key: "terms", text: messages.footer_legal_terms }
               ].map((item) => (
                 <Link 
                   key={item.key}
