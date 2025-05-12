@@ -56,25 +56,18 @@ export default function Footer({ messages, locale }: FooterProps) {
             </h3>
             <div className="flex gap-4">
               <a 
-                href="#" 
+                href="https://www.instagram.com/timeforevent.pl?igsh=MTRvZHF3NDN1aTNjOQ%3D%3D&utm_source=qr" 
                 aria-label="Instagram"
                 className="text-dj-dark hover:text-dj-purple transition-colors"
               >
                 <FaInstagram size={28} />
               </a>
               <a 
-                href="#" 
+                href="https://www.facebook.com/profile.php?id=61576003234913&mibextid=wwXIfr&rdid=duGGzaWvxwgha15w&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AVTfFmjdV%2F%3Fmibextid%3DwwXIfr" 
                 aria-label="Facebook"
                 className="text-dj-dark hover:text-dj-purple transition-colors"
               >
                 <FaFacebook size={28} />
-              </a>
-              <a 
-                href="#" 
-                aria-label="YouTube"
-                className="text-dj-dark hover:text-dj-purple transition-colors"
-              >
-                <FaYoutube size={28} />
               </a>
             </div>
           </div>
