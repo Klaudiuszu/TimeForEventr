@@ -14,4 +14,10 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+
+  auth: {
+    providers: [
+      {name: 'google', title: 'Google', url: 'https://api.sanity.io/v1/auth/login/google'},
+    ]
+  }
 })
